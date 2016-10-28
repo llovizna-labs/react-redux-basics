@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
+import {render}  from "react-dom";
 import Layout from "./components/Layout";
 
 import {
@@ -9,6 +9,9 @@ import {
 } from 'redux';
 
 import createLogger from 'redux-logger';
+
+
+import {Provider} from 'react-redux';
 
 const logger = createLogger();
 
@@ -59,7 +62,10 @@ const userReducer = (state = {
 
 
 const reminderReducer = (state = {
-  items: [],
+  items: [{
+    id: 0,
+    value: 'Im the first'
+  }],
 }, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
@@ -88,53 +94,8 @@ const store = createStore(
   applyMiddleware(logger));
 
 
-// store.dispatch({
-//   type: 'ADD',
-//   payload: 10
-// });
-//
-//
-// store.dispatch({
-//   type: 'SUBSTRACT',
-//   payload: 2
-// });
-//
-// store.dispatch({
-//   type: 'SET_NAME',
-//   payload: 'Logan'
-// });
-//
-//
-// store.dispatch({
-//   type: 'SET_AGE',
-//   payload: 23
-// });
+const app = document.getElementById('app');
 
-
-store.dispatch({
-  type: 'ADD_ITEM',
-  payload: {
-    id: 0,
-    value: 'Hola'
-  }
-});
-
-store.dispatch({
-  type: 'ADD_ITEM',
-  payload: {
-    id: 1,
-    value: 'Hola mundo'
-  }
-});
-
-
-store.dispatch({
-  type: 'DELETE_ITEM',
-  payload: 0
-});
-
-
-
-// const app = document.getElementById('app');
-//
-// ReactDom.render( < Layout / > , app);
+render( <Provider store={store} >
+      < Layout / >
+  </Provider> , app);

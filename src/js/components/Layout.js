@@ -1,20 +1,14 @@
 import React, {Component} from "react";
-
-import Header from "./Header";
-
-import Container from "./Container";
+import Main from "../containers/Main";
 
 export default class Layout extends Component {
-  constructor(){
-    super();
-    this.state = {
-      name: 'will'
-    };
+  constructor(props) {
+    super(props);
   }
   render() {
     return (
       <div className="container-fluid">
-      <Container/>
+      <Main/>
       </div>
     );
   }

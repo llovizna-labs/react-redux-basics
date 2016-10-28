@@ -1,16 +1,17 @@
 import React, {Component} from "react";
 
-export default class List extends Component {
+export const List = (props) => {
 
-  constructor(props) {
-    super(props);
-  }
+    let items = props.items;
 
-  render() {
     return (
-      <ul>
-      <li> Items... </li>
-      </ul>
+      <div>
+        <h2> {items.length} Elements  </h2>
+        <ul>
+            {items.map(function(i, index){
+                return <li key={ index }>{i.value}</li>;
+            })}
+        </ul>
+      </div>
     );
-  }
 }
