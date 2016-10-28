@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 
 import {
   createStore,
+  combineReducers,
   applyMiddleware
 } from 'redux';
 
@@ -12,13 +13,10 @@ import createLogger from 'redux-logger';
 const logger = createLogger();
 
 
-const initialState = {
+const mathReducer = (state = {
   result: 1,
   lastValues: []
-}
-
-
-const reducer = (state = initialState, action) => {
+}, action) => {
   switch (action.type) {
     case 'ADD':
       state = {
@@ -35,11 +33,32 @@ const reducer = (state = initialState, action) => {
       }
       break;
   }
-
   return state;
 }
 
-const store = createStore(reducer, applyMiddleware(logger));
+const userReducer = (state = {
+  name: 'Martha',
+  age: 27
+}, action) => {
+  switch (action.type) {
+    case 'SET_NAME':
+      state = {
+        ...state,
+        name: action.payload
+      }
+      break;
+    case 'SET_AGE':
+      state = {
+        ...state,
+        age: action.payload
+      }
+      break;
+  }
+  return state;
+}
+
+
+const store = createStore( combineReducers({mathReducer, userReducer}), applyMiddleware(logger));
 
 
 store.dispatch({
@@ -51,6 +70,17 @@ store.dispatch({
 store.dispatch({
   type: 'SUBSTRACT',
   payload: 2
+});
+
+store.dispatch({
+  type: 'SET_NAME',
+  payload: 'Logan'
+});
+
+
+store.dispatch({
+  type: 'SET_AGE',
+  payload: 23
 });
 
 // const app = document.getElementById('app');
