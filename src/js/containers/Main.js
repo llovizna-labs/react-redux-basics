@@ -3,16 +3,13 @@ import {connect} from 'react-redux';
 import Header from "../components/Header";
 import {List} from "../components/List";
 
+import {addReminder} from '../actions/reminders';
+
  class Main extends Component {
   constructor(props){
     super(props);
 
   }
-
-  changeTitle(title) {
-    this.setState({title});
-  }
-
 
   render() {
     return (
@@ -40,10 +37,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addReminder: (value) => {
-    dispatch({
-        type: 'ADD_ITEM',
-        payload: value
-      });
+      dispatch(addReminder(value));
     }
   }
 }
