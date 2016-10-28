@@ -1,15 +1,10 @@
 import React, {Component} from "react";
 import Main from "../containers/Main";
 
-export default class Layout extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
+export const Layout = (props) => {
     return (
       <div className="container-fluid">
       <Main/>
       </div>
     );
-  }
 }
