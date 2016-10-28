@@ -6,6 +6,10 @@ import {
 
 import createLogger from 'redux-logger';
 
+import thunk from 'redux-thunk';
+
+import promise from 'redux-promise-middleware';
+
 import reminderReducer from './reducers/reminder';
 
 
@@ -16,6 +20,6 @@ const store = createStore(
   combineReducers({
     reminderReducer
   }),
-  applyMiddleware(logger));
+  applyMiddleware(logger, promise()));
 
 export default store;

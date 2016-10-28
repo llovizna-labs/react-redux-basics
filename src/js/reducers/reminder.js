@@ -5,7 +5,7 @@ const reminderReducer = (state = {
   }],
 }, action) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case 'ADD_ITEM_FULFILLED':
       state = {
         ...state,
         items: [].concat(state.items, action.payload)
