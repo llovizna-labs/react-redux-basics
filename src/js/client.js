@@ -58,30 +58,82 @@ const userReducer = (state = {
 }
 
 
-const store = createStore( combineReducers({mathReducer, userReducer}), applyMiddleware(logger));
+const reminderReducer = (state = {
+  items: [],
+}, action) => {
+  switch (action.type) {
+    case 'ADD_ITEM':
+      state = {
+        ...state,
+        items: [].concat(state.items, action.payload)
+      }
+      break;
+    case 'DELETE_ITEM':
+      state = {
+        ...state,
+        items: state.items.slice(0,action.payload).concat(state.items.slice(action.payload+1))
+      }
+      break;
+  }
+  return state;
+}
+
+
+const store = createStore(
+  combineReducers({
+    mathReducer,
+    userReducer,
+    reminderReducer
+  }),
+  applyMiddleware(logger));
+
+
+// store.dispatch({
+//   type: 'ADD',
+//   payload: 10
+// });
+//
+//
+// store.dispatch({
+//   type: 'SUBSTRACT',
+//   payload: 2
+// });
+//
+// store.dispatch({
+//   type: 'SET_NAME',
+//   payload: 'Logan'
+// });
+//
+//
+// store.dispatch({
+//   type: 'SET_AGE',
+//   payload: 23
+// });
 
 
 store.dispatch({
-  type: 'ADD',
-  payload: 10
+  type: 'ADD_ITEM',
+  payload: {
+    id: 0,
+    value: 'Hola'
+  }
+});
+
+store.dispatch({
+  type: 'ADD_ITEM',
+  payload: {
+    id: 1,
+    value: 'Hola mundo'
+  }
 });
 
 
 store.dispatch({
-  type: 'SUBSTRACT',
-  payload: 2
-});
-
-store.dispatch({
-  type: 'SET_NAME',
-  payload: 'Logan'
+  type: 'DELETE_ITEM',
+  payload: 0
 });
 
 
-store.dispatch({
-  type: 'SET_AGE',
-  payload: 23
-});
 
 // const app = document.getElementById('app');
 //
