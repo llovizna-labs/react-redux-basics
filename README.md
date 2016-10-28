@@ -13,7 +13,7 @@ The app comes with a basic react/redux structure and three reducers that can be 
 * [http://vincent.billey.me/pure-javascript-immutable-array] (Immutable array functions)
 
 * [https://www.youtube.com/watch?v=qrsle5quS7A] (Tutorial Series)
-
+* [https://thinkster.io/iterating-and-rendering-loops-in-react] (Loops on JSX)
 
 
 
